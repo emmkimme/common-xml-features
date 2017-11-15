@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "1.2.0",
+  "version": "1.2.1 ",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -29,8 +29,8 @@
       "email": "emmanuel.kimmerlin@thomsonreuters.com"
     }
   ],
-  "main": "common-xml-features.js",
-  "types": "common-xml-features.d.ts",
+  "main": "./lib/common-xml-features.js",
+  "types": "./lib/common-xml-features.d.ts",
   "dependencies": {
     "@types/node": "^0.0.3",
     "del": "^2.2.2",
