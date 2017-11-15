@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig-base",
+    "compilerOptions": {
+        "declaration": false
+    },
+	"files": [
+		"../src/common-xml-features.ts",
+		"../src/common-xml-features-browser.ts"
+	]
+}

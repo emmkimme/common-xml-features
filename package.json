@@ -1,0 +1,60 @@
+{
+  "name": "common-xml-features",
+  "version": "2.0.0",
+  "description": "Common XML API for renderer, node and master process",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emmkimme/common-xml-features.git"
+  },
+  "keywords": [
+    "electron",
+    "xml",
+    "xmldom",
+    "xmlpath",
+    "XMLSerializer",
+    "DOMParser",
+    "DOMImplementation",
+    "renderer",
+    "node"
+  ],
+  "author": "Emmanuel Kimmerlin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/emmkimme/common-xml-features/issues"
+  },
+  "homepage": "https://github.com/emmkimme/common-xml-features#readme",
+  "maintainers": [
+    {
+      "name": "Emmanuel Kimmerlin",
+      "email": "emmanuel.kimmerlin@thomsonreuters.com"
+    }
+  ],
+  "main": "common-xml-features.js",
+  "types": "common-xml-features.d.ts",
+  "dependencies": {
+    "@types/node": "^0.0.3",
+    "del": "^2.2.2",
+    "del-cli": "^0.2.1",
+    "dts-bundle": "^0.6.1",
+    "xmldom": "0.1.27",
+    "xpath": "0.0.23",
+    "typescript": "^2.5.2"
+  },
+  "scripts": {
+    "clean": "del-cli ./lib ./build ./dist",
+    "build": "npm run build-js && npm run build-declaration",
+    "build-js": "tsc -p ./tsconfig/tsconfig-js.json",
+    "build-declaration": "npm run build-declaration-ts && npm run build-declaration-dts-bundle && npm run build-declaration-dts-bundle-browser && npm run clean-declaration-dts",
+    "build-declaration-ts": "tsc -p ./tsconfig/tsconfig-declaration.json",
+    "build-declaration-dts-bundle": "dts-bundle --outputAsModuleFolder --name common-xml-features --main ./lib/common-xml-features.d.ts",
+    "build-declaration-dts-bundle-browser": "dts-bundle --outputAsModuleFolder --name common-xml-features-browser --main ./lib/common-xml-features-browser.d.ts",
+    "clean-declaration-dts": "del-cli ./lib/xml/*.d.ts",
+    "tsc": "tsc",
+    "publication": "npm publish ./ --registry https://registry.npmjs.org/"
+  },
+  "browser": {
+    "index.js": "index-browser.js",
+    "xmldom": false,
+    "xpath": false
+  }
+}

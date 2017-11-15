@@ -1,0 +1,12 @@
+# ignore typescript configuration files
+**/tsconfig.*
+# ignore typescript files
+**/*.ts
+# include typescript definition files
+!**/*.d.ts
+# ignore tsconfig generated
+tsconfig.generated.json
+# ignore typings configuration file
+typings.json
+# ignore typings folder
+typings/
