@@ -196,6 +196,7 @@ function serializeToString(node: any, buf: any, isHTML: boolean, visibleNamespac
 	}
 }
 
+/** @internal */
 export class XMLSerializerFixed implements XMLSerializer {
     serializeToString(target: Node): string {
         return nodeSerializeToString(target);
