@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -31,24 +31,21 @@
   ],
   "main": "./lib/common-xml-features.js",
   "types": "./lib/common-xml-features.d.ts",
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^0.0.3",
     "del": "^2.2.2",
-    "del-cli": "^0.2.1",
-    "dts-bundle": "^0.6.1",
+    "del-cli": "^0.2.1"
+  },
+  "dependencies": {
     "xmldom": "0.1.27",
-    "xpath": "0.0.23",
-    "typescript": "^2.5.2"
+    "xpath": "0.0.23"
   },
   "scripts": {
     "clean": "del-cli ./lib ./build ./dist",
     "build": "npm run build-js && npm run build-declaration",
     "build-js": "tsc -p ./tsconfig/tsconfig-js.json",
     "build-declaration": "npm run build-declaration-ts",
-    "#build-declaration": "npm run build-declaration-ts && npm run build-declaration-dts-bundle && npm run build-declaration-dts-bundle-browser && npm run clean-declaration-dts",
     "build-declaration-ts": "tsc -p ./tsconfig/tsconfig-declaration.json",
-    "#build-declaration-dts-bundle": "dts-bundle --outputAsModuleFolder --name common-xml-features --main ./lib/common-xml-features.d.ts",
-    "#build-declaration-dts-bundle-browser": "dts-bundle --outputAsModuleFolder --name common-xml-features-browser --main ./lib/common-xml-features-browser.d.ts",
     "clean-declaration-dts": "del-cli ./lib/xml/*.d.ts",
     "tsc": "tsc",
     "publication": "npm publish ./ --registry https://registry.npmjs.org/"
