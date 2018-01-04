@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "publication": "npm publish ./ --registry https://registry.npmjs.org/"
   },
   "browser": {
-    "common-xml-features.js": "common-xml-features-browser.js",
+    "./lib/common-xml-features.js": "./lib/common-xml-features-browser.js",
     "xmldom": false,
     "xpath": false
   }
