@@ -1,5 +1,6 @@
 import { XMLFeaturesWrapper } from './xml/xmlFeatures';
 import { XMLSerializerFixed } from './xml/xmlSerializer'
+import { DOMParserFixed } from './xml/domParser';
 
 let localXMLFeatures: XMLFeaturesWrapper = {};
 
@@ -37,7 +38,7 @@ try {
         //         })
         // };
 
-        localXMLFeatures.DOMParser = xmldom.DOMParser;
+        localXMLFeatures.DOMParser = DOMParserFixed;
         // localXMLFeatures.XMLSerializer = xmldom.XMLSerializer;
         localXMLFeatures.XMLSerializer = XMLSerializerFixed;
         localXMLFeatures.DOMImplementation = new xmldom.DOMImplementation();

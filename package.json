@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -34,7 +34,10 @@
   "devDependencies": {
     "@types/node": "^0.0.3",
     "del": "^2.2.2",
-    "del-cli": "^0.2.1"
+    "del-cli": "^0.2.1",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "sinon": "^4.0.1"
   },
   "dependencies": {
     "xmldom": "0.1.27",
@@ -48,6 +51,7 @@
     "build-declaration-ts": "tsc -p ./tsconfig/tsconfig-declaration.json",
     "clean-declaration-dts": "del-cli ./lib/xml/*.d.ts",
     "tsc": "tsc",
+    "test": "mocha test --recursive",
     "publication": "npm publish ./ --registry https://registry.npmjs.org/"
   },
   "browser": {
