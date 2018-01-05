@@ -3,19 +3,21 @@ export interface XPathEvaluate {
 }
 
 export interface XMLFeaturesWrapper {
-    DOMImplementation?: DOMImplementation;
+    DOMImplementation: DOMImplementation;
 
-    DOMParser?: {
+    DOMParser: {
         prototype: DOMParser;
         new (): DOMParser;
     };
 
-    XMLSerializer?: {
+    XMLSerializer: {
         prototype: XMLSerializer;
         new (): XMLSerializer;
     };
 
-    XPathResult?: XPathResult;
-    XPathExpression?: XPathExpression;
-    XPathNSResolver?: XPathNSResolver;
+    XPathResult: XPathResult;
+    XPathExpression: XPathExpression;
+    XPathNSResolver: XPathNSResolver;
+
+    getParserError(doc: Document): any;
 }
