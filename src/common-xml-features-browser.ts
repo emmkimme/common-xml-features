@@ -8,10 +8,8 @@ localXMLFeatures.XMLSerializer = windowLocal.XMLSerializer;
 localXMLFeatures.DOMImplementation = document.implementation;
 
 localXMLFeatures.XPathResult = windowLocal.XPathResult;
-localXMLFeatures.Evaluate = (doc, expression, contextNode, resolver, type, result) => {
-    return doc.evaluate(expression, contextNode, resolver, type, result);
-};
-
+localXMLFeatures.XPathExpression = windowLocal.XPathExpression;
+localXMLFeatures.XPathNSResolver = windowLocal.XPathNSResolver;
 let XMLFeatures = localXMLFeatures;
 
 export default XMLFeatures;

@@ -5,7 +5,6 @@ import { DOMParserFixed } from './xml/domParser';
 let localXMLFeatures: XMLFeaturesWrapper = {};
 
 try {
-    let shouldInstall_xpath = true;
     let shouldInstall_xmldom = true;
     try {
         if (typeof window === 'object') {
@@ -19,10 +18,20 @@ try {
 
             if (document.implementation && document.implementation.hasFeature && document.implementation.hasFeature('XPath', null)) {
                 localXMLFeatures.XPathResult = windowLocal.XPathResult;
-                localXMLFeatures.Evaluate = (doc, expression, contextNode, resolver, type, result) => {
-                    return doc.evaluate(expression, contextNode, resolver, type, result);
+                localXMLFeatures.XPathExpression = windowLocal.XPathExpression;
+                localXMLFeatures.XPathNSResolver = windowLocal.XPathNSResolver;
+
+                const xpath = require('xpath');
+                Document.prototype.evaluate = function(expression, contextNode, resolver, type, result) {
+                    contextNode = contextNode || this;
+                    return xpath.evaluate(expression, contextNode, resolver, type, result);
                 };
-                shouldInstall_xpath = false;
+                Document.prototype.createNSResolver = function(node: any) {
+                    return xpath.createNSResolver(node);
+                };
+                Document.prototype.createExpression = function(xpathText: any, namespaceURLMapper: any) {
+                    return xpath.createExpression(xpathText, namespaceURLMapper);
+                };
             }
         }
     }
@@ -31,24 +40,28 @@ try {
 
     if (shouldInstall_xmldom) {
         const xmldom = require('xmldom');
-        // class xmldomDOMParser extends xmldom.DOMParser {
-        //     constructor() {
-        //         super({ locator:{},
-        //                 errorHandler:{error:callback,fatalError:callback}
-        //         })
-        // };
-
         localXMLFeatures.DOMParser = DOMParserFixed;
-        // localXMLFeatures.XMLSerializer = xmldom.XMLSerializer;
         localXMLFeatures.XMLSerializer = XMLSerializerFixed;
         localXMLFeatures.DOMImplementation = new xmldom.DOMImplementation();
-    }
-    if (shouldInstall_xpath) {
+
         const xpath = require('xpath');
         localXMLFeatures.XPathResult = xpath.XPathResult;
-        localXMLFeatures.Evaluate = (doc: Document, expression: string, contextNode: Node, resolver: XPathNSResolver | null, type: number, result: XPathResult | null): XPathResult => {
-            contextNode = contextNode || doc;
+        localXMLFeatures.XPathExpression = xpath.XPathExpression;
+        localXMLFeatures.XPathNSResolver = xpath.XPathNSResolver;
+
+        // Inject evaluate
+        let domImplementation = new xmldom.DOMImplementation();
+        let xmlDoc = domImplementation.createDocument(null, null, null);
+        let xmldocProto = Object.getPrototypeOf(xmlDoc);
+        xmldocProto['evaluate'] = function(expression: any, contextNode: any, resolver: any, type: any, result: any) {
+            contextNode = contextNode || this;
             return xpath.evaluate(expression, contextNode, resolver, type, result);
+        };
+        xmldocProto['createNSResolver'] = function(node: any) {
+            return xpath.createNSResolver(node);
+        };
+        xmldocProto['createExpression'] = function(xpathText: any, namespaceURLMapper: any) {
+            return xpath.createExpression(xpathText, namespaceURLMapper);
         };
     }
 }

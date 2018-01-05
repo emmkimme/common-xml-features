@@ -15,7 +15,7 @@ export interface XMLFeaturesWrapper {
         new (): XMLSerializer;
     };
 
-    Evaluate?: XPathEvaluate;
-
     XPathResult?: XPathResult;
+    XPathExpression?: XPathExpression;
+    XPathNSResolver?: XPathNSResolver;
 }

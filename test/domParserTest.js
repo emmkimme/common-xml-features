@@ -5,7 +5,7 @@ const expect = chai.expect;
 const XMLFeatures = require('../lib/common-xml-features').default;
 
 // see https://www.w3schools.com/xml/note_error.xml
-let docError = 
+let xmlString = 
 '<?xml version="1.0" encoding="UTF-8"?>' +
 '<note>' +
 '  <to>Tove</to>' +
@@ -17,10 +17,10 @@ let docError =
 describe('DOMParser', () => {
   it('xml error', (done) => {
     let dom = new XMLFeatures.DOMParser();
-    let doc = dom.parseFromString(docError, 'text/xml');
+    let xmlDoc = dom.parseFromString(xmlString, 'text/xml');
     let xmlSerializer = new XMLFeatures.XMLSerializer()
-    console.log(xmlSerializer.serializeToString(doc));
-    expect(doc.documentElement.tagName === 'parsererror');
+    console.log(xmlSerializer.serializeToString(xmlDoc));
+    expect(xmlDoc.documentElement.tagName === 'parsererror');
     done();
   });
 });
