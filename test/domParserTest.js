@@ -14,12 +14,14 @@ let docError =
 "  <body>Don't forget me this weekend!</body>" +
 '</note>';
 
-describe('DOMParser', function () {
-  describe('error', function () {
+describe('DOMParser', () => {
+  it('xml error', (done) => {
     let dom = new XMLFeatures.DOMParser();
     let doc = dom.parseFromString(docError, 'text/xml');
     let xmlSerializer = new XMLFeatures.XMLSerializer()
     console.log(xmlSerializer.serializeToString(doc));
+    expect(doc.documentElement.tagName === 'parsererror');
+    done();
   });
 });
 
