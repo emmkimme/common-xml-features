@@ -11,6 +11,7 @@
     "xml",
     "xmldom",
     "xmlpath",
+    "xpath",
     "XMLSerializer",
     "DOMParser",
     "DOMImplementation",

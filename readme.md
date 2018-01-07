@@ -52,11 +52,6 @@ let transferData = xmlSerializer.serializeToString(xmlDoc);
 ```
 
 # Next
-1.
-Support another browsers : IE, Edge, Safari, ...
-
-2.
-Fork xpath in order to fix wrong xpath typescript definition file.
-
-3.
-Fork xmldom in order to fix xmlserializer and enhance error handling.
+1. Support another browsers : IE, Edge, Safari, ...
+2. Fork xpath in order to fix wrong xpath typescript definition file.
+3. Fork xmldom in order to fix xmlserializer and enhance error handling.
