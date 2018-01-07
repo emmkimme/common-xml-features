@@ -91,9 +91,7 @@ function serializeToString(node: any, buf: any, isHTML: boolean, visibleNamespac
 		
 		isHTML =  (htmlns === node.namespaceURI) ||isHTML 
 		buf.push('<',nodeName);
-		
-		
-		
+
 		for(var i=0;i<len;i++){
 			// add namespaces for attributes
 			var attr = attrs.item(i);

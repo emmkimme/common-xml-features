@@ -3,19 +3,18 @@ import { XMLSerializerFixed } from './xml/xmlSerializer'
 import { DOMParserFixed } from './xml/domParser';
 import { getParserError } from './xml/domParsererror';
 
-let localXMLFeatures: any = {};
-
 const xmldom = require('xmldom');
-localXMLFeatures.DOMParser = DOMParserFixed;
-localXMLFeatures.XMLSerializer = XMLSerializerFixed;
-localXMLFeatures.DOMImplementation = new xmldom.DOMImplementation();
+XMLFeaturesWrapper.DOMParser = DOMParserFixed;
+XMLFeaturesWrapper.XMLSerializer = XMLSerializerFixed;
+XMLFeaturesWrapper.DOMImplementation = xmldom.DOMImplementation;
 
 const xpath = require('xpath');
-localXMLFeatures.XPathResult = xpath.XPathResult;
-localXMLFeatures.XPathExpression = xpath.XPathExpression;
-localXMLFeatures.XPathNSResolver = xpath.XPathNSResolver;
+XMLFeaturesWrapper.XPathResult = xpath.XPathResult;
+XMLFeaturesWrapper.XPathExpression = xpath.XPathExpression;
+XMLFeaturesWrapper.XPathNSResolver = xpath.XPathNSResolver;
+// XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
 
-localXMLFeatures.getParserError = getParserError;
+XMLFeaturesWrapper.getParserError = getParserError;
 
 // Inject evaluate and other XPath functions
 {
@@ -34,4 +33,4 @@ localXMLFeatures.getParserError = getParserError;
     };
 }
 
-export default localXMLFeatures as XMLFeaturesWrapper;
+export default XMLFeaturesWrapper;
