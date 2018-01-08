@@ -1,14 +1,13 @@
 import { XMLFeaturesWrapper } from './xml/xmlFeatures';
-import { XMLSerializerFixed } from './xml/xmlSerializer'
 import { DOMParserFixed } from './xml/domParser';
 import { getParserError } from './xml/domParsererror';
 
-const xmldom = require('xmldom');
+const xmldom = require('./xmldom/dom-parser');
 XMLFeaturesWrapper.DOMParser = DOMParserFixed;
-XMLFeaturesWrapper.XMLSerializer = XMLSerializerFixed;
+XMLFeaturesWrapper.XMLSerializer = xmldom.XMLSerializer;
 XMLFeaturesWrapper.domImplementation = new xmldom.DOMImplementation();
 
-const xpath = require('xpath');
+const xpath = require('./xpath/xpath');
 XMLFeaturesWrapper.XPathResult = xpath.XPathResult;
 XMLFeaturesWrapper.XPathExpression = xpath.XPathExpression;
 XMLFeaturesWrapper.XPathNSResolver = xpath.XPathNSResolver;

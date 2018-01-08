@@ -1,6 +1,7 @@
 {
     "extends": "./tsconfig-base",
     "compilerOptions": {
+        "allowJs": false,
         "declaration": true,
         "noResolve": false,
         "noEmitOnError": false

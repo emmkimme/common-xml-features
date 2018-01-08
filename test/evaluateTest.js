@@ -119,7 +119,7 @@ describe('xpath with namespace', () => {
         }
       }
 
-      let entityResult = xmlDoc.evaluate('//s:html//s:body//s:iframe//@src', xmlDoc, nsResolver, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+      let entityResult = xmlDoc.evaluate('//html//body//iframe//@src', xmlDoc, null, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
       if (entityResult.singleNodeValue && entityResult.singleNodeValue.nodeValue) {
       }
       done();

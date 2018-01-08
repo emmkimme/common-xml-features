@@ -12,9 +12,9 @@ Many browser supports natively XML features like DOMParser, XMLSerializer,... it
 Purposes of this package are :
 - whatever the context, provide a common API for accessing XM features
 - when loaded in a node context 
-    - uses [xmldom](https://www.npmjs.com/package/xmldom) and [xpath](https://www.npmjs.com/package/xpath) packages
+    - uses a fork of [xmldom](https://www.npmjs.com/package/xmldom) and use a fork of [xpath](https://www.npmjs.com/package/xpath) packages
     - fix XMLSerializer issue of xmldom ('>' is not escaped !) 
-    - generates a standard <parsererror> document when xmldom meets an issue  ([MDN DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser))
+    - generates a standard <parsererror> document when xmldom meets an issue ([MDN DOMParser](https://developer.mozilla.org/en-US/docs/Web/API/DOMParser))
     - enhances xmldom Document interface with XPath functions : [evaluate](https://developer.mozilla.org/en-US/docs/Web/API/Document/evaluate), [createExpression](https://developer.mozilla.org/en-US/docs/Web/API/Document/createExpression), [createNSResolver](https://developer.mozilla.org/en-US/docs/Web/API/Document/createNSResolver)
 - when loaded in a renderer context
     - fallbacks to native implementation and prevent xmldom and xmlpath to be inlined by browserify
@@ -54,5 +54,3 @@ let transferData = xmlSerializer.serializeToString(xmlDoc);
 
 # Next
 1. Support another browsers : IE, Edge, Safari, ...
-2. Fork xpath in order to fix wrong xpath typescript definition file.
-3. Fork xmldom in order to fix xmlserializer and enhance error handling.
