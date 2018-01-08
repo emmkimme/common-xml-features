@@ -4,7 +4,9 @@ import { getParserError } from './xml/domParsererror';
 const windowLocal: any = window;
 XMLFeaturesWrapper.DOMParser = windowLocal.DOMParser;
 XMLFeaturesWrapper.XMLSerializer = windowLocal.XMLSerializer;
-XMLFeaturesWrapper.DOMImplementation = windowLocal.DOMImplementation;
+
+const documentLocal: any = document;
+XMLFeaturesWrapper.domImplementation = documentLocal.implementation;
 
 XMLFeaturesWrapper.XPathResult = windowLocal.XPathResult;
 XMLFeaturesWrapper.XPathExpression = windowLocal.XPathExpression;

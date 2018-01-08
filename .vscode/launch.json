@@ -11,8 +11,8 @@
             "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
             "stopOnEntry": false,
             "args": [
-                // "${workspaceRoot}/test/evaluateTest.js",
-                "${workspaceRoot}/test/domParserTest.js",
+                "${workspaceRoot}/test/evaluateTest.js",
+                // "${workspaceRoot}/test/domParserTest.js",
                 "--no-timeouts"
             ],
             "cwd": "${workspaceRoot}/test/",

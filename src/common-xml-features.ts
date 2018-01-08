@@ -6,7 +6,7 @@ import { getParserError } from './xml/domParsererror';
 const xmldom = require('xmldom');
 XMLFeaturesWrapper.DOMParser = DOMParserFixed;
 XMLFeaturesWrapper.XMLSerializer = XMLSerializerFixed;
-XMLFeaturesWrapper.DOMImplementation = xmldom.DOMImplementation;
+XMLFeaturesWrapper.domImplementation = new xmldom.DOMImplementation();
 
 const xpath = require('xpath');
 XMLFeaturesWrapper.XPathResult = xpath.XPathResult;

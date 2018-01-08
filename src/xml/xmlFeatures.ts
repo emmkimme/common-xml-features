@@ -1,47 +1,3 @@
-// export interface XMLFeaturesWrapper {
-//     DOMImplementation: {
-//         prototype: DOMImplementation;
-//         new(): DOMImplementation;
-//     };
-    
-//     DOMParser: {
-//         prototype: DOMParser;
-//         new (): DOMParser;
-//     };
-
-//     XMLSerializer: {
-//         prototype: XMLSerializer;
-//         new (): XMLSerializer;
-//     };
-
-//     XPathResult: {
-//         prototype: XPathResult;
-//         new(): XPathResult;
-//         readonly ANY_TYPEs: number;
-//         readonly ANY_UNORDERED_NODE_TYPE: number;
-//         readonly BOOLEAN_TYPE: number;
-//         readonly FIRST_ORDERED_NODE_TYPE: number;
-//         readonly NUMBER_TYPE: number;
-//         readonly ORDERED_NODE_ITERATOR_TYPE: number;
-//         readonly ORDERED_NODE_SNAPSHOT_TYPE: number;
-//         readonly STRING_TYPE: number;
-//         readonly UNORDERED_NODE_ITERATOR_TYPE: number;
-//         readonly UNORDERED_NODE_SNAPSHOT_TYPE: number;
-//     };
-
-//     XPathExpression: {
-//         prototype: XPathExpression;
-//         new(): XPathExpression;
-//     };    
-
-//     XPathNSResolver: {
-//         prototype: XPathNSResolver;
-//         new(): XPathNSResolver;
-//     }
-
-//     getParserError(doc: Document): any;
-// }
-
 export namespace XMLFeaturesWrapper {
     export interface DOMImplementation {
         createDocument(namespaceURI: string | null, qualifiedName: string | null, doctype: DocumentType | null): Document;
@@ -50,10 +6,12 @@ export namespace XMLFeaturesWrapper {
         hasFeature(feature: string | null, version: string | null): boolean;
     }
 
-    export var DOMImplementation: {
-        prototype: DOMImplementation;
-        new(): DOMImplementation;
-    };
+    export var domImplementation: DOMImplementation;
+
+    // export var DOMImplementation: {
+    //     prototype: DOMImplementation;
+    //     new(): DOMImplementation;
+    // };
 
     export interface DOMParser {
         parseFromString(source: string, mimeType: string): Document;

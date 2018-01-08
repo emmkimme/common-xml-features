@@ -6,37 +6,40 @@ export class DOMParserFixed implements DOMParser {
     }
 
     parseFromString(source: string, mimeType: string): Document {
-        let domOptions: any = {};
-        /**
-        * locator is always need for error position info
-        */
-        domOptions.locator = {};
-        
-        /**
-         * you can override the errorHandler for xml parser
-         * @link http://www.saxproject.org/apidoc/org/xml/sax/ErrorHandler.html
-         */
-        domOptions.errorHandler = {
-            warning: function(error: string) {
-                let msg = error; // `[xmldom warning]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
-                if (domOptions.error == null) {
-                    domOptions.error = { level: "warning", message: error };
+        let domOptions: any = {
+            /**
+            * locator is always need for error position info
+            */
+            locator: {},
+            
+            /**
+             * you can override the errorHandler for xml parser
+             * @link http://www.saxproject.org/apidoc/org/xml/sax/ErrorHandler.html
+             */
+            errorHandler : {
+                warning: function(error: string) {
+                    if (mimeType !== 'text/html') {
+                        let msg = error; // `[xmldom warning]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
+                        if (domOptions.error == null) {
+                            domOptions.error = { level: "warning", message: error };
+                        }
+                        throw msg;
+                    }
+                },
+                error: function(error: string) {
+                    let msg = error; // `[xmldom error]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
+                    if (domOptions.error == null) {
+                        domOptions.error = { level: "error", message: error };
+                    }
+                    throw msg;
+                },
+                fatalError: function(error: string) {
+                    let msg = error; // `[xmldom fatalError]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
+                    if (domOptions.error == null) {
+                        domOptions.error = { level: "fatalError", message: error };
+                    }
+                    throw msg;
                 }
-                throw msg;
-            },
-            error: function(error: string) {
-                let msg = error; // `[xmldom error]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
-                if (domOptions.error == null) {
-                    domOptions.error = { level: "error", message: error };
-                }
-                throw msg;
-            },
-            fatalError: function(error: string) {
-                let msg = error; // `[xmldom fatalError]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
-                if (domOptions.error == null) {
-                    domOptions.error = { level: "fatalError", message: error };
-                }
-                throw msg;
             }
         };
         let domParser = new xmldom.DOMParser(domOptions);
