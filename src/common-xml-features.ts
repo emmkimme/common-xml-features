@@ -1,24 +1,23 @@
-import { XMLFeaturesWrapper } from './xml/xmlFeatures';
-import { DOMParserFixed } from './xml/domParser';
-import { getParserError } from './xml/domParsererror';
+export { getParserError } from './xml/domParsererror';
 
-const xmldom = require('./xmldom/dom-parser');
-XMLFeaturesWrapper.DOMParser = DOMParserFixed;
-XMLFeaturesWrapper.XMLSerializer = xmldom.XMLSerializer;
-XMLFeaturesWrapper.domImplementation = new xmldom.DOMImplementation();
+export const XMLSerializer = require('./xmldom/dom').XMLSerializer ;
+export const DOMParser = require('./xml/domParser').DOMParserFixed;
+// export let DOMParser = require('./xmldom/dom-parser');
 
-const xpath = require('./xpath/xpath');
-XMLFeaturesWrapper.XPathResult = xpath.XPathResult;
-XMLFeaturesWrapper.XPathExpression = xpath.XPathExpression;
-XMLFeaturesWrapper.XPathNSResolver = xpath.XPathNSResolver;
+const DOMImplementation = require('./xmldom/dom').DOMImplementation;
+export const domImplementation = new DOMImplementation();
+
+export const XPathResult = require('./xpath/xpath').XPathResult;
+export const XPathExpression = require('./xpath/xpath').XPathExpression;
+export const XPathNSResolver = require('./xpath/xpath').XPathNSResolver;
+
 // XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
-
-XMLFeaturesWrapper.getParserError = getParserError;
 
 // Inject evaluate and other XPath functions
 {
-    let domImplementation = new xmldom.DOMImplementation();
-    let xmlDoc = domImplementation.createDocument(null, null, null);
+    const xpath = require('./xpath/xpath');
+    const domImplementation = new DOMImplementation();
+    const xmlDoc = domImplementation.createDocument(null, null, null);
     let xmldocProto = Object.getPrototypeOf(xmlDoc);
     xmldocProto['evaluate'] = function(expression: string, contextNode: Node, resolver: XPathNSResolver | null, type: number, result: XPathResult | null): XPathResult {
         contextNode = contextNode || this;
@@ -32,4 +31,3 @@ XMLFeaturesWrapper.getParserError = getParserError;
     };
 }
 
-export default XMLFeaturesWrapper;

@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -15,6 +15,7 @@
     "XMLSerializer",
     "DOMParser",
     "DOMImplementation",
+    "XMLSerializer",
     "renderer",
     "node"
   ],

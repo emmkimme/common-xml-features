@@ -2,7 +2,7 @@ const chai = require('chai');
 const assert = chai.assert;
 const expect = chai.expect;
 
-const XMLFeatures = require('../lib/common-xml-features').default;
+const XMLFeatures = require('../lib/common-xml-features');
 
 describe('xpath', () => {
   let xmlDoc;

@@ -1,18 +1,14 @@
-import { XMLFeaturesWrapper } from './xml/xmlFeatures';
-import { getParserError } from './xml/domParsererror';
+export { getParserError } from './xml/domParsererror';
 
 const windowLocal: any = window;
-XMLFeaturesWrapper.DOMParser = windowLocal.DOMParser;
-XMLFeaturesWrapper.XMLSerializer = windowLocal.XMLSerializer;
+export const DOMParser = windowLocal.DOMParser;
+export const XMLSerializer = windowLocal.XMLSerializer;
 
 const documentLocal: any = document;
-XMLFeaturesWrapper.domImplementation = documentLocal.implementation;
+export const domImplementation = documentLocal.implementation;
 
-XMLFeaturesWrapper.XPathResult = windowLocal.XPathResult;
-XMLFeaturesWrapper.XPathExpression = windowLocal.XPathExpression;
-XMLFeaturesWrapper.XPathNSResolver = windowLocal.XPathNSResolver;
+export const XPathResult = windowLocal.XPathResult;
+export const XPathExpression = windowLocal.XPathExpression;
+export const XPathNSResolver = windowLocal.XPathNSResolver;
 // XMLFeaturesWrapper.XPathEvaluator = windowLocal.XPathEvaluator;
 
-XMLFeaturesWrapper.getParserError = getParserError;
-
-export default XMLFeaturesWrapper;
