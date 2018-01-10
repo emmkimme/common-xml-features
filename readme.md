@@ -30,7 +30,7 @@ if (XMLFeatures.getParserError(xmlDoc)) {
 
 let entityResult = xmlDoc.evaluate('//html//body//iframe//@src', null, null, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
 ...
-let xmlDoc =  new XMLFeatures.domImplementation.createDocument(null, null, null);
+let xmlDoc = new XMLFeatures.domImplementation.createDocument(null, null, null);
 ...
 let xmlSerializer = new XMLFeatures.XMLSerializer();
 let transferData = xmlSerializer.serializeToString(xmlDoc);

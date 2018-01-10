@@ -1,6 +1,5 @@
 const xmldom = require('../xmldom/dom-parser');
 
-/** @internal */
 export class DOMParserFixed implements DOMParser {
     constructor() {
     }

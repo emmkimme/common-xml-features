@@ -2,24 +2,19 @@
 
 export { getParserError } from './xml/domParsererror';
 
-const XMLSerializerClass: XMLSerializer = require('./xmldom/dom').XMLSerializer;
-export const XMLSerializer = XMLSerializerClass;
+// XML
+export const XMLSerializer = require('./xmldom/dom').XMLSerializer ;
 
 import { DOMParserFixed } from './xml/domParser';
 export const DOMParser = DOMParserFixed;
-// export let DOMParser = require('./xmldom/dom-parser');
 
-const DOMImplementationClass = require('./xmldom/dom').DOMImplementation;
-export const domImplementation: DOMImplementation = new DOMImplementationClass();
+const DOMImplementation = require('./xmldom/dom').DOMImplementation;
+export const domImplementation = new DOMImplementation();
 
-const XPathResultClass: XPathResult = require('./xpath/xpath').XPathResult;
-export const XPathResult = XPathResultClass;
-
-const XPathExpressionClass: XPathExpression = require('./xpath/xpath').XPathExpression;
-export const XPathExpression = XPathExpressionClass;
-
-const XPathNSResolverClass: XPathNSResolver = require('./xpath/xpath').XPathNSResolver;
-export const XPathNSResolver = XPathNSResolverClass;
+// XPath
+export const XPathResult = require('./xpath/xpath').XPathResult;
+export const XPathExpression = require('./xpath/xpath').XPathExpression;
+export const XPathNSResolver = require('./xpath/xpath').XPathNSResolver;
 
 // XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
 
