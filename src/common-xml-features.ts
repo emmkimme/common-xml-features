@@ -1,22 +1,31 @@
+//import * as XMLInterfaces from './common-xml-interfaces';
+
 export { getParserError } from './xml/domParsererror';
 
-export const XMLSerializer = require('./xmldom/dom').XMLSerializer ;
-export const DOMParser = require('./xml/domParser').DOMParserFixed;
+const XMLSerializerClass: XMLSerializer = require('./xmldom/dom').XMLSerializer;
+export const XMLSerializer = XMLSerializerClass;
+
+import { DOMParserFixed } from './xml/domParser';
+export const DOMParser = DOMParserFixed;
 // export let DOMParser = require('./xmldom/dom-parser');
 
-const DOMImplementation = require('./xmldom/dom').DOMImplementation;
-export const domImplementation = new DOMImplementation();
+const DOMImplementationClass = require('./xmldom/dom').DOMImplementation;
+export const domImplementation: DOMImplementation = new DOMImplementationClass();
 
-export const XPathResult = require('./xpath/xpath').XPathResult;
-export const XPathExpression = require('./xpath/xpath').XPathExpression;
-export const XPathNSResolver = require('./xpath/xpath').XPathNSResolver;
+const XPathResultClass: XPathResult = require('./xpath/xpath').XPathResult;
+export const XPathResult = XPathResultClass;
+
+const XPathExpressionClass: XPathExpression = require('./xpath/xpath').XPathExpression;
+export const XPathExpression = XPathExpressionClass;
+
+const XPathNSResolverClass: XPathNSResolver = require('./xpath/xpath').XPathNSResolver;
+export const XPathNSResolver = XPathNSResolverClass;
 
 // XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
 
 // Inject evaluate and other XPath functions
 {
     const xpath = require('./xpath/xpath');
-    const domImplementation = new DOMImplementation();
     const xmlDoc = domImplementation.createDocument(null, null, null);
     let xmldocProto = Object.getPrototypeOf(xmlDoc);
     xmldocProto['evaluate'] = function(expression: string, contextNode: Node, resolver: XPathNSResolver | null, type: number, result: XPathResult | null): XPathResult {

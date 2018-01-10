@@ -19,25 +19,9 @@ Purposes of this package are :
 - when loaded in a renderer context
     - fallbacks to native implementation and prevent xmldom and xmlpath to be inlined by browserify
 
-# API
-You have to use factory functions to be redirected to the right objects.
-- XMLFeatures.DOMImplementation
-- XMLFeatures.DOMParser
-- XMLFeatures.XMLSerializer
-Interface of these objects are supposed to be equivalent.
-
-Some types are exported as well
-- XMLFeatures.XPathResult
-- XMLFeatures.XPathExpression
-- XMLFeatures.XPathNSResolver
-
-An helper function for checking if the document is a <parsererror> content
-- XMLFeatures.getParserError
-
-
 # Samples
 ```ts
-import XMLFeatures from 'common-xml-features';
+import * as XMLFeatures from 'common-xml-features';
 
 let xmlDoc = new XMLFeatures.DOMParser().parseFromString(result, 'text/xml');
 if (XMLFeatures.getParserError(xmlDoc)) {
@@ -51,6 +35,22 @@ let xmlDoc =  new XMLFeatures.domImplementation.createDocument(null, null, null)
 let xmlSerializer = new XMLFeatures.XMLSerializer();
 let transferData = xmlSerializer.serializeToString(xmlDoc);
 ```
+
+# API
+You have to use proxy to be redirected to the right class factory according to the context :
+- (common-xml-features).DOMImplementation
+- (common-xml-features).DOMParser
+- (common-xml-features).XMLSerializer
+Other objects like Node, Element, Document are pure interfaces and are created through methods of classes above.
+
+Some interfaces are exported as well :
+- (common-xml-features).XPathResult
+- (common-xml-features).XPathExpression
+- (common-xml-features).XPathNSResolver
+
+A helper function (experimental, returned value is not yet defined) for checking if the document is a <parsererror> content
+- (common-xml-features).getParserError
+You can check if it returns null (no error) or not (parsing error).
 
 # Next
 1. Support another browsers : IE, Edge, Safari, ...
