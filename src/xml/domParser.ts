@@ -17,6 +17,7 @@ export class DOMParserFixed implements DOMParser {
              */
             errorHandler : {
                 warning: function(error: string) {
+                    // HTML is more permissive than XML, so we do not care of warnings
                     if (mimeType !== 'text/html') {
                         let msg = error; // `[xmldom warning]\t${error}, ${DOMParserFixed._locator(domOptions.locator)}`;
                         if (domOptions.error == null) {
