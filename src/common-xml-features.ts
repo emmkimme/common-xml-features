@@ -11,6 +11,9 @@ export const DOMParser = DOMParserFixed;
 const DOMImplementation = require('./xmldom/dom').DOMImplementation;
 export const domImplementation = new DOMImplementation();
 
+export const Element = require('./xmldom/dom').Element;
+export const Node = require('./xmldom/dom').Node;
+
 // XPath
 export const XPathResult = require('./xpath/xpath').XPathResult;
 export const XPathExpression = require('./xpath/xpath').XPathExpression;
