@@ -4,7 +4,7 @@ const windowLocal: any = window;
 export const DOMParser: any = windowLocal.DOMParser;
 export const XMLSerializer: any = windowLocal.XMLSerializer;
 
-export const Element: any = windowLocal.Element;
+export const DOMException: any = windowLocal.DOMException;
 export const Node: any = windowLocal.Node;
 
 const documentLocal: any = document;

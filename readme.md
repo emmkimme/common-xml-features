@@ -29,6 +29,7 @@ if (XMLFeatures.getParserError(xmlDoc)) {
 }
 
 let entityResult = xmlDoc.evaluate('//html//body//iframe//@src', null, null, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+assert(entityResult.nodeType === XMLFeatures.Node.ELEMENT_NODE)
 ...
 let xmlDoc = new XMLFeatures.domImplementation.createDocument(null, null, null);
 ...
