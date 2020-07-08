@@ -1,0 +1,6 @@
+[submodule "src/xmldom"]
+	path = src/xmldom
+	url = git@github.com:emmkimme/xmldom.git
+[submodule "src/xpath"]
+	path = src/xpath
+	url = git@github.com:emmkimme/xpath.git
