@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -47,7 +47,7 @@
     "clean": "del-cli ./lib ./build ./dist",
     "build": "npm run build-ts && npm run build-declaration && npm run build-js",
     "build-ts": "tsc -p ./tsconfig/tsconfig-js.json",
-    "build-js": "cpx ./src/xmldom/{dom-parser.js,dom.js,sax.js,entities.js} ./lib/xmldom && cpx ./src/xpath/xpath.js ./lib/xpath",
+    "build-js": "cpx ./src/xmldom/lib/{dom-parser.js,dom.js,sax.js,entities.js} ./lib/xmldom && cpx ./src/xpath/xpath.js ./lib/xpath",
     "build-declaration": "npm run build-declaration-ts",
     "build-declaration-ts": "tsc -p ./tsconfig/tsconfig-declaration.json",
     "clean-declaration-dts": "del-cli ./lib/xml/*.d.ts",
