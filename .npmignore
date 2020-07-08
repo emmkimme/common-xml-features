@@ -21,4 +21,5 @@ webpack.*
 **/.vscode
 .npmignore
 .gitignore
+.gitmodules
 
