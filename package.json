@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "2.1.9",
+  "version": "3.0.0",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
@@ -53,7 +53,7 @@
     "clean-declaration-dts": "del-cli ./lib/xml/*.d.ts",
     "tsc": "tsc",
     "test": "mocha test --recursive",
-    "publication": "npm publish ./ --registry https://registry.npmjs.org/"
+    "deploy": "npm publish ./ --registry https://registry.npmjs.org/"
   },
   "browser": {
     "./lib/common-xml-features.js": "./lib/common-xml-features-browser.js"
