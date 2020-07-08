@@ -1,17 +1,15 @@
 export { getParserError } from './xml/domParsererror';
 
-const windowLocal: any = window;
-export const DOMParser: DOMParser = windowLocal.DOMParser;
-export const XMLSerializer: XMLSerializer = windowLocal.XMLSerializer;
+export const DOMParser = window.DOMParser;
+export const XMLSerializer = window.XMLSerializer;
 
-export const DOMException: DOMException = windowLocal.DOMException;
-export const Node: Node = windowLocal.Node;
+export const DOMException = window.DOMException;
+export const Node = window.Node;
 
-const documentLocal: any = document;
-export const domImplementation: DOMImplementation = documentLocal.implementation;
+export const domImplementation = document.implementation;
 
-export const XPathResult: XPathResult = windowLocal.XPathResult;
-export const XPathExpression: XPathExpression = windowLocal.XPathExpression;
-export const XPathNSResolver: XPathNSResolver = windowLocal.XPathNSResolver;
+export const XPathResult = window.XPathResult;
+export const XPathExpression = window.XPathExpression;
+export const XPathNSResolver = (window as any).XPathNSResolver;
 // XMLFeaturesWrapper.XPathEvaluator = windowLocal.XPathEvaluator;
 

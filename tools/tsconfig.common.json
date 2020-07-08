@@ -2,7 +2,6 @@
     "compilerOptions": {
 		"module": "commonjs",
         "moduleResolution": "node",
-        "allowJs": true,
 		"target": "es6",        
         "noImplicitAny": true,
         "noImplicitThis": true,
@@ -17,6 +16,5 @@
 //        "inlineSourceMap": true,
         "stripInternal": true,
         "sourceMap": true,
-        "outDir" : "../lib"
     }
 }

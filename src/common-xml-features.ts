@@ -3,10 +3,10 @@
 export { getParserError } from './xml/domParsererror';
 
 // XML
-export const XMLSerializer = require('./xmldom/dom').XMLSerializer as XMLSerializer;
+export const XMLSerializer/*: XMLSerializer*/ = require('./xmldom/dom').XMLSerializer;
 
 import { DOMParserFixed } from './xml/domParser';
-export const DOMParser: DOMParser = DOMParserFixed as any; // a bit ugly
+export const DOMParser/*: DOMParser*/ = DOMParserFixed;
 
 const DOMImplementation = require('./xmldom/dom').DOMImplementation;
 export const domImplementation = new DOMImplementation() as DOMImplementation;

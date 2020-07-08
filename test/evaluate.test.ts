@@ -1,11 +1,10 @@
-const chai = require('chai');
-const assert = chai.assert;
-const expect = chai.expect;
+// import { assert } from 'chai';
+// import { expect } from 'chai';
 
-const XMLFeatures = require('../lib/common-xml-features');
+import * as XMLFeatures from '..';
 
 describe('xpath', () => {
-  let xmlDoc;
+  let xmlDoc: Document;
   before(done => {
     // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_using_XPath_in_JavaScript
     let xmlString =
@@ -24,7 +23,7 @@ describe('xpath', () => {
       '</people>';
 
     let dom = new XMLFeatures.DOMParser();
-    xmlDoc = dom.parseFromString(xmlString, 'text/xmlString');
+    xmlDoc = dom.parseFromString(xmlString, 'text/xml');
     done();
   });
 
@@ -33,6 +32,7 @@ describe('xpath', () => {
     let person;
     while (person = personResult.iterateNext()) {
     }
+    person;
     done();
   });
 
@@ -42,19 +42,21 @@ describe('xpath', () => {
     for (let i = 0, len = personResult.snapshotLength; i < len; ++i) {
       person = personResult.snapshotItem(i);
     }
+    person;
     done();
   });
 
   it('xmldom evaluate xFIRST_ORDERED_NODE_TYPE', (done) => {
     var personResult = xmlDoc.evaluate('//person', xmlDoc, null, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
     let person = personResult.singleNodeValue;
+    person;
     done();
   });
 });
 
 describe('xpath with namespace', () => {
   describe('xml', () => {
-    let xmlDoc;
+    let xmlDoc: Document;
     before(done => {
       // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_using_XPath_in_JavaScript
       let xmlString =
@@ -73,20 +75,22 @@ describe('xpath with namespace', () => {
         '</people>';
 
       let dom = new XMLFeatures.DOMParser();
-      xmlDoc = dom.parseFromString(xmlString, 'text/xmlString');
+      xmlDoc = dom.parseFromString(xmlString, 'text/xml');
       done();
     });
     it('xmldom evaluate ANY_TYPE', (done) => {
+      /// @ts-ignore
       var nsResolver = xmlDoc.createNSResolver(xmlDoc.ownerDocument == null ? xmlDoc.documentElement : xmlDoc.ownerDocument.documentElement);
       var personResult = xmlDoc.evaluate('//person', xmlDoc, nsResolver, XMLFeatures.XPathResult.ANY_TYPE, null);
       let person;
       while (person = personResult.iterateNext()) {
       }
+      person;
       done();
     });
   });
   describe('html', () => {
-    let xmlDoc;
+    let xmlDoc: Document;
     before(done => {
       // see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Introduction_to_using_XPath_in_JavaScript
       let xmlString =
@@ -110,16 +114,16 @@ describe('xpath with namespace', () => {
       done();
     });
     it('xmldom evaluate ANY_TYPE', (done) => {
-      let nsResolver = {
+      let nsResolver: XPathNSResolver = {
         lookupNamespaceURI: (prefix) => {
-          var ns = {
+          const ns: any = {
             's': 'http://www.w3.org/1999/xhtml'
           };
           return ns[prefix] || null;
         }
       }
 
-      let entityResult = xmlDoc.evaluate('//html//body//iframe//@src', xmlDoc, null, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
+      let entityResult = xmlDoc.evaluate('//html//body//iframe//@src', xmlDoc, nsResolver, XMLFeatures.XPathResult.FIRST_ORDERED_NODE_TYPE, null);
       if (entityResult.singleNodeValue && entityResult.singleNodeValue.nodeValue) {
       }
       done();

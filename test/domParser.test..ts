@@ -1,8 +1,7 @@
-const chai = require('chai');
-const assert = chai.assert;
-const expect = chai.expect;
+// import { assert } from 'chai';
+import { expect } from 'chai';
 
-const XMLFeatures = require('../lib/common-xml-features');
+import * as XMLFeatures from '..';
 
 describe('DOMParser', () => {
   describe('XML', () => {

@@ -1,0 +1,13 @@
+{
+    "include": [
+        "./**/*.ts"
+    ],
+    "extends": "../tools/tsconfig.common.json",
+    "compilerOptions": {
+        "allowJs": true,
+        // Needed for project references.
+        "composite": true,
+        "declaration": true,
+        "outDir" : "../lib"
+    },
+}
