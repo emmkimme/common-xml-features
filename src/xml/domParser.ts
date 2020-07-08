@@ -42,7 +42,7 @@ export class DOMParserFixed implements DOMParser {
                 }
             }
         };
-        let domParser = new xmldom.DOMParser(domOptions);
+        let domParser: DOMParser = new xmldom.DOMParser(domOptions);
         try {
             return domParser.parseFromString(source, mimeType);
         }
