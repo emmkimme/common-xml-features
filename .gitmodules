@@ -1,6 +1,8 @@
 [submodule "src/xmldom"]
 	path = src/xmldom
 	url = git@github.com:emmkimme/xmldom.git
+    branch = common-xml-features
 [submodule "src/xpath"]
 	path = src/xpath
 	url = git@github.com:emmkimme/xpath.git
+    branch = common-xml-features

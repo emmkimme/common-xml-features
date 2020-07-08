@@ -1,6 +1,6 @@
 {
   "name": "common-xml-features",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Common XML API for renderer, node and master process",
   "repository": {
     "type": "git",
