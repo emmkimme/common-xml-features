@@ -4,7 +4,7 @@ export class DOMParserFixed implements DOMParser {
     constructor() {
     }
 
-    parseFromString(source: string, mimeType: string): Document {
+    parseFromString(source: string, mimeType: SupportedType): Document {
         let domOptions: any = {
             /**
             * locator is always need for error position info
