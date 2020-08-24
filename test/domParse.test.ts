@@ -1,7 +1,7 @@
 // import { assert } from 'chai';
 import { expect } from 'chai';
 
-import * as XMLFeatures from '..';
+import * as XMLFeatures from '../lib/common-xml-features';
 
 describe('DOMParser', () => {
   describe('XML', () => {

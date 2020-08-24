@@ -1,10 +1,12 @@
+/// <reference lib="dom" />
+
 const xmldom = require('../xmldom/dom-parser');
 
 export class DOMParserFixed implements DOMParser {
     constructor() {
     }
 
-    parseFromString(source: string, mimeType: SupportedType): Document {
+    parseFromString(source: string, mimeType: DOMParserSupportedType): Document {
         let domOptions: any = {
             /**
             * locator is always need for error position info
