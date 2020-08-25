@@ -6,7 +6,8 @@ export class DOMParserFixed implements DOMParser {
     constructor() {
     }
 
-    parseFromString(source: string, mimeType: DOMParserSupportedType): Document {
+    // Strange exported conflicts of types : DOMParserSupportedType | SupportedType, so use a basic string
+    parseFromString(source: string, mimeType: string /* DOMParserSupportedType | SupportedType */): Document {
         let domOptions: any = {
             /**
             * locator is always need for error position info
@@ -46,7 +47,7 @@ export class DOMParserFixed implements DOMParser {
         };
         let domParser: DOMParser = new xmldom.DOMParser(domOptions);
         try {
-            return domParser.parseFromString(source, mimeType);
+            return domParser.parseFromString(source, mimeType as any);
         }
         catch(err) {
             if (domOptions.error == null) {
