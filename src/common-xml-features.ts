@@ -3,38 +3,65 @@
 export { getParserError } from './xml/domParsererror';
 
 // XML
-export const XMLSerializer/*: XMLSerializer*/ = require('./xmldom/dom').XMLSerializer;
+let DOMParser: any;
+let XMLSerializer: any;
 
-import { DOMParserFixed } from './xml/domParser';
-export const DOMParser/*: DOMParser*/ = DOMParserFixed;
+let DOMException: any;
+let Node: any;
 
-const DOMImplementation = require('./xmldom/dom').DOMImplementation;
-export const domImplementation = new DOMImplementation() as DOMImplementation;
-
-export const DOMException = require('./xmldom/dom').DOMException as DOMException;
-export const Node = require('./xmldom/dom').Node as Node;
+let domImplementation: DOMImplementation;
 
 // XPath
-export const XPathResult = require('./xpath/xpath').XPathResult as XPathResult;
-export const XPathExpression = require('./xpath/xpath').XPathExpression as XPathExpression;
-export const XPathNSResolver = require('./xpath/xpath').XPathNSResolver as XPathNSResolver;
+let XPathResult: any;
+let XPathExpression: any;
+let XPathNSResolver: any;
 
-// XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
+function InitializeAliases() {
+    const xmldomParser = require('./xml/domParser');
+    DOMParser/*: DOMParser*/ = xmldomParser.DOMParserFixed;
 
-// Inject evaluate and other XPath functions
-{
+    const xmldom = require('./xmldom/dom');
+    XMLSerializer/*: XMLSerializer*/ = xmldom.XMLSerializer;
+
+    DOMException = xmldom.DOMException as DOMException;
+    Node = xmldom.Node as Node;
+
+    const DOMImplementation = xmldom.DOMImplementation;
+    domImplementation = new DOMImplementation() as DOMImplementation;
+
     const xpath = require('./xpath/xpath');
+
+    XPathResult = xpath.XPathResult as XPathResult;
+    XPathExpression = xpath.XPathExpression as XPathExpression;
+    XPathNSResolver =xpath.XPathNSResolver as XPathNSResolver;
+
+    // XMLFeaturesWrapper.XPathEvaluator = xpath.XPath;
+
+    // Inject evaluate and other XPath functions
     const xmlDoc = domImplementation.createDocument(null, null, null);
     let xmldocProto = Object.getPrototypeOf(xmlDoc);
-    xmldocProto['evaluate'] = function(expression: string, contextNode: Node, resolver: XPathNSResolver | null, type: number, result: XPathResult | null): XPathResult {
+    xmldocProto['evaluate'] = function (expression: string, contextNode: Node, resolver: XPathNSResolver | null, type: number, result: XPathResult | null): XPathResult {
         contextNode = contextNode || this;
         return xpath.evaluate(expression, contextNode, resolver, type, result);
     };
-    xmldocProto['createNSResolver'] = function(nodeResolver: Node): XPathNSResolver {
+    xmldocProto['createNSResolver'] = function (nodeResolver: Node): XPathNSResolver {
         return xpath.createNSResolver(nodeResolver);
     };
-    xmldocProto['createExpression'] = function(expression: string, resolver: XPathNSResolver): XPathExpression {
+    xmldocProto['createExpression'] = function (expression: string, resolver: XPathNSResolver): XPathExpression {
         return xpath.createExpression(expression, resolver);
     };
 }
 
+InitializeAliases();
+
+
+export {
+    DOMParser,
+    XMLSerializer,
+    DOMException,
+    Node,
+    domImplementation,
+    XPathResult,
+    XPathExpression,
+    XPathNSResolver
+};

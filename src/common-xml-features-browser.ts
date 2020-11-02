@@ -1,15 +1,46 @@
 export { getParserError } from './xml/domParsererror';
 
-export const DOMParser = window.DOMParser;
-export const XMLSerializer = window.XMLSerializer;
+let DOMParser: any;
+let XMLSerializer: any;
 
-export const DOMException = window.DOMException;
-export const Node = window.Node;
+let DOMException: any;
+let Node: any;
 
-export const domImplementation = document.implementation;
+let domImplementation: DOMImplementation;
 
-export const XPathResult = window.XPathResult;
-export const XPathExpression = window.XPathExpression;
-export const XPathNSResolver = (window as any).XPathNSResolver;
-// XMLFeaturesWrapper.XPathEvaluator = windowLocal.XPathEvaluator;
+let XPathResult: any;
+let XPathExpression: any;
+let XPathNSResolver: any;
 
+function InitializeAliases() {
+    DOMParser = window.DOMParser;
+    XMLSerializer = window.XMLSerializer;
+
+    DOMException = window.DOMException;
+    Node = window.Node;
+
+    domImplementation = window.document.implementation;
+
+    XPathResult = window.XPathResult;
+    XPathExpression = window.XPathExpression;
+    XPathNSResolver = (window as any).XPathNSResolver;
+    // XPathEvaluator = window.XPathEvaluator;
+}
+
+// After a load, we may have to refresh initializations (happen in Electron preload in sandbox)
+window.addEventListener('load', () => {
+    InitializeAliases();
+});
+InitializeAliases();
+
+
+export { 
+    DOMParser,
+    XMLSerializer,
+    DOMException,
+    Node,
+    domImplementation,
+    XPathResult,
+    XPathExpression,
+    XPathNSResolver
+};
