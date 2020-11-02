@@ -34,7 +34,7 @@ window.addEventListener('load', () => {
 InitializeAliases();
 
 
-export { 
+export {
     DOMParser,
     XMLSerializer,
     DOMException,

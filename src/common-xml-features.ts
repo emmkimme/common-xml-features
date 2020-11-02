@@ -1,5 +1,3 @@
-//import * as XMLInterfaces from './common-xml-interfaces';
-
 export { getParserError } from './xml/domParsererror';
 
 // XML
